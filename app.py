@@ -28,5 +28,19 @@ def add_city():
     return jsonify({"status": "ok", "message": "Город {} добавлен".format(user_city)}), 200
 
 
+@server.route("/api/cities", methods=["GET"])
+def get_cities():
+    try:
+        with open(STORAGE, "r", encoding="utf-8") as f:
+            content = f.read()
+    except FileNotFoundError:
+        content = ""
+
+    if not content.strip():
+        return jsonify({"status": "error", "message": "Файл пуст"}), 200
+
+    return jsonify({"status": "ok", "content": content}), 200
+
+
 if __name__ == "__main__":
     server.run(host="0.0.0.0", port=5000, debug=True)
