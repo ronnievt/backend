@@ -5,7 +5,7 @@ from flask_cors import CORS
 server = Flask(__name__)
 CORS(server)
 
-STORAGE = "data.txt"
+STORAGE = "data/data.txt"
 
 
 @server.route("/api/city", methods=["POST"])
